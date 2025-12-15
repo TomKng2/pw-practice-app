@@ -1,6 +1,8 @@
 import { test, expect } from '@playwright/test';
 import { NavigationPage } from '../page-objects/navigationPage';
 import { FormLayoutsPage } from '../page-objects/formLayoutsPage';
+import { DatePickerPage } from '../page-objects/datePickerPage';
+import { on } from 'events';
 
 test.beforeEach(async ({ page }) => {
     await page.goto('http://localhost:4200');
@@ -25,3 +27,20 @@ test('parameterize methods in page objects', async ({ page }) => {
     await onFormsLayoutsPage.submitUsingTheGridFormWithCredentialsAndSelectOption('test@test.com', 'Welcome1', 'Option 2');
     await onFormsLayoutsPage.submitInlineFormWithNameEmailAndCheckbox('John Smith', 'John@test.com', true);
 })
+
+test('date picker test', async ({ page }) => {
+    const navigateTo = new NavigationPage(page);
+    const onDatePickerPage = new DatePickerPage(page);
+    await navigateTo.datePickerPage();
+    await onDatePickerPage.selectDateFromToday(5);
+    await onDatePickerPage.selectDateFromToday(30);
+})
+
+test('date range picker test', async ({ page }) => {
+    const navigateTo = new NavigationPage(page);
+    const onDatePickerPage = new DatePickerPage(page);
+    await navigateTo.datePickerPage();
+    await onDatePickerPage.selectDateRangeFromToday(5, 10);
+})
+
+
