@@ -1,13 +1,14 @@
 import { Locator, Page } from '@playwright/test';
+import { HelperBase } from './helperBase';
 
-export class FormLayoutsPage {
-    private readonly page: Page
+export class FormLayoutsPage extends HelperBase{
+
     readonly useingTheGridForm: Locator
     readonly inlineForm: Locator
 
 
     constructor(page: Page) {
-        this.page = page
+        super(page)
         this.useingTheGridForm = this.page.locator('nb-card', { hasText: "Using the Grid" });
         this.inlineForm = this.page.locator('nb-card', { hasText: "Inline form" });
     }
