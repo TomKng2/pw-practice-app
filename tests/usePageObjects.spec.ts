@@ -25,14 +25,18 @@ test('parameterize methods in page objects', async ({ page }) => {
 
     await pm.navigateTo.formLayoutsPage();
     await pm.onFormsLayoutsPage.submitUsingTheGridFormWithCredentialsAndSelectOption(randomMail, 'Welcome1', 'Option 1');
+    // page.screenshot({path: 'screenshots/formsLayoutPage.png'})
     //wait pm.onFormsLayoutsPage.submitUsingTheGridFormWithCredentialsAndSelectOption(randomEmail, 'Welcome1', 'Option 2');
     await pm.onFormsLayoutsPage.submitInlineFormWithNameEmailAndCheckbox(randomFullName, randomMailExample, true);
+    // await page.locator('nb-card', { hasText: "Inline form" }).screenshot({path: 'screenshots/inlineForm.png'})
 })
 
 test('date picker test', async ({ page }) => {
     const pm = new PageManager(page);
     await pm.navigateTo.datePickerPage();
     await pm.onDatePickerPage.selectDateFromToday(5);
+    // const buffer = await page.screenshot();
+    // console.log(buffer.toString('base64'));
     await pm.onDatePickerPage.selectDateFromToday(30);
 })
 

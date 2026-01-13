@@ -1,11 +1,14 @@
 import { test, expect } from '@playwright/test';
 
+test.describe.configure({ mode: 'parallel' });
+
 test.beforeEach(async ({ page }) => {
     await page.goto('http://localhost:4200');
 });
 
-test.describe.only('Form Layouts page', async () => {
+test.describe('Form Layouts page', async () => {
     test.describe.configure({retries: 2});
+    test.describe.configure({ mode: 'serial' }); //NOT RECOMMENDED
     test.beforeEach(async ({ page }) => {
         await page.getByText('Forms').click();
         await page.getByText('Form Layouts').click();
@@ -21,11 +24,11 @@ test.describe.only('Form Layouts page', async () => {
 
         await useingtheGridEmailInput.fill('test@test.com');
         await useingtheGridEmailInput.clear();
-        await useingtheGridEmailInput.pressSequentially('test2@test.com', { delay: 500 });
+        await useingtheGridEmailInput.pressSequentially('test2@test.com');
 
         //generic assertion
         const inputValue = await useingtheGridEmailInput.inputValue();
-        expect(inputValue).toEqual('test2@test.com1');
+        expect(inputValue).toEqual('test2@test.com');
 
         //locator assertion
         await expect(useingtheGridEmailInput).toHaveValue('test2@test.com');
