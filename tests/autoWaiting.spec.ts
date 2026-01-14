@@ -1,13 +1,13 @@
 import {expect, test} from '@playwright/test'
 
 test.beforeEach(async({page}, testInfo)=>{
-    await page.goto('http://uitestingplayground.com/ajax');
+    await page.goto(process.env.URL);
     await page.getByText('Button Triggering AJAX Request').click();
     // Overwrites test timeout
     testInfo.setTimeout(testInfo.timeout + 2000);
 })
 
-test.skip('Auto-Waiting', async({page})=> {
+test('Auto-Waiting', async({page})=> {
     const successButton = page.locator('.bg-success');
     await successButton.click();
 

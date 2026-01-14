@@ -3,7 +3,7 @@ import { PageManager } from '../page-objects/pageManager';
 import { faker }  from '@faker-js/faker';
 
 test.beforeEach(async ({ page }) => {
-    await page.goto('http://localhost:4200');
+    await page.goto('/');
 });
 
 test('navigate to form page', async ({ page }) => {
@@ -24,10 +24,11 @@ test('parameterize methods in page objects', async ({ page }) => {
     const randomMailExample = `${randomFullName.replace(/ /g, "")}${faker.number.int(1000)}@test.com`;
 
     await pm.navigateTo.formLayoutsPage();
-    await pm.onFormsLayoutsPage.submitUsingTheGridFormWithCredentialsAndSelectOption(randomMail, 'Welcome1', 'Option 1');
+    //await pm.onFormsLayoutsPage.submitUsingTheGridFormWithCredentialsAndSelectOption(randomMail, 'Welcome1', 'Option 1');
+    await pm.onFormsLayoutsPage.submitUsingTheGridFormWithCredentialsAndSelectOption(process.env.USER, process.env.PASSWORD, 'Option 1');
     // page.screenshot({path: 'screenshots/formsLayoutPage.png'})
     //wait pm.onFormsLayoutsPage.submitUsingTheGridFormWithCredentialsAndSelectOption(randomEmail, 'Welcome1', 'Option 2');
-    await pm.onFormsLayoutsPage.submitInlineFormWithNameEmailAndCheckbox(randomFullName, randomMailExample, true);
+    //await pm.onFormsLayoutsPage.submitInlineFormWithNameEmailAndCheckbox(randomFullName, randomMailExample, true);
     // await page.locator('nb-card', { hasText: "Inline form" }).screenshot({path: 'screenshots/inlineForm.png'})
 })
 

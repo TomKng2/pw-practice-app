@@ -11,7 +11,8 @@
     "start": "ng serve",
     "pageObjects-chrome": "npx playwright test usePageObjects.spec.ts --project=chromium --headed",
     "pageObjects-firefox": "npx playwright test usePageObjects.spec.ts --project=firefox --headed",
-    "pageObjects-all": "npm run pageObjects-chrome && npm run pageObjects-firefox"
+    "pageObjects-all": "npm run pageObjects-chrome && npm run pageObjects-firefox",
+    "autoWait-dev": "set URL=http://uitestingplayground.com/ajax\nnpx playwright test autoWaiting.spec.ts --project=chromium"
   },
   "overrides": {
     "stylus": "github:stylus/stylus#0.54.5"
@@ -71,6 +72,7 @@
     "@types/node": "^12.12.70",
     "codelyzer": "^0.0.28",
     "conventional-changelog-cli": "^2.2.2",
+    "dotenv": "^16.5.0",
     "npm-run-all": "4.0.2",
     "rimraf": "2.6.1",
     "stylelint": "^15.6.0",

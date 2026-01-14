@@ -1,8 +1,9 @@
-import {expect, test} from '@playwright/test'
+import {expect} from '@playwright/test'
+import {test} from '../test-options';
 
 
-test('drag and drop within iFrame', async({page})=>{
-    await page.goto('https://www.globalsqa.com/demo-site/draganddrop/');
+test('drag and drop within iFrame', async({page, globalsQaUrl})=>{
+    await page.goto(globalsQaUrl);
     await page.locator(".fc-dialog-container").getByRole('button', { name: 'Consent' }).click() //accept cookies
 
     const frame = page.frameLocator('[rel-title="Photo Manager"] iframe');
