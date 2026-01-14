@@ -28,7 +28,7 @@ test('parameterize methods in page objects', async ({ page }) => {
     await pm.onFormsLayoutsPage.submitUsingTheGridFormWithCredentialsAndSelectOption(process.env.USER, process.env.PASSWORD, 'Option 1');
     // page.screenshot({path: 'screenshots/formsLayoutPage.png'})
     //wait pm.onFormsLayoutsPage.submitUsingTheGridFormWithCredentialsAndSelectOption(randomEmail, 'Welcome1', 'Option 2');
-    //await pm.onFormsLayoutsPage.submitInlineFormWithNameEmailAndCheckbox(randomFullName, randomMailExample, true);
+    await pm.onFormsLayoutsPage.submitInlineFormWithNameEmailAndCheckbox(randomFullName, randomMailExample, true);
     // await page.locator('nb-card', { hasText: "Inline form" }).screenshot({path: 'screenshots/inlineForm.png'})
 })
 

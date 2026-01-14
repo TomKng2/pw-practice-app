@@ -49,3 +49,6 @@ node_modules/
 /playwright/.cache/
 /screenshots/
 .env
+
+# Playwright
+/playwright/.auth/
