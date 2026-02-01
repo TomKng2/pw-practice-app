@@ -20,7 +20,12 @@ export default defineConfig<TestOptions>({
   retries: 1,
 
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
+  reporter: [
+    ['json', {  outputFile: 'test-results/test-results.json' }],
+    ['junit', { outputFile: 'test-results/junit-results.xml' }],
+    ['allure-playwright']
+  
+  ],
 
 
 

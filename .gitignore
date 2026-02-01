@@ -52,3 +52,7 @@ node_modules/
 
 # Playwright
 /playwright/.auth/
+
+# Allure
+allure-results/
+allure-report/

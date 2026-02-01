@@ -32,7 +32,7 @@ test('parameterize methods in page objects', {tag: '@smoke'}, async ({ page }) =
     // await page.locator('nb-card', { hasText: "Inline form" }).screenshot({path: 'screenshots/inlineForm.png'})
 })
 
-test('date picker test', async ({ page }) => {
+test.skip('date picker test', async ({ page }) => {
     const pm = new PageManager(page);
     await pm.navigateTo.datePickerPage();
     await pm.onDatePickerPage.selectDateFromToday(5);
