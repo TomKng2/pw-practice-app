@@ -6,7 +6,7 @@ test.beforeEach(async ({ page }) => {
     await page.goto('/');
 });
 
-test.describe('Form Layouts page', async () => {
+test.describe('Form Layouts page', {tag: '@block'}, async () => {
     test.describe.configure({retries: 2});
     test.describe.configure({ mode: 'serial' }); //NOT RECOMMENDED
     test.beforeEach(async ({ page }) => {

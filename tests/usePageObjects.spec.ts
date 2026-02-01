@@ -6,7 +6,7 @@ test.beforeEach(async ({ page }) => {
     await page.goto('/');
 });
 
-test('navigate to form page', async ({ page }) => {
+test('navigate to form page', {tag: ['@smoke', '@regression']}, async ({ page }) => {
     const pm = new PageManager(page);
     await pm.navigateTo.formLayoutsPage();
     await pm.navigateTo.datePickerPage();
@@ -16,7 +16,7 @@ test('navigate to form page', async ({ page }) => {
 });
 
 
-test('parameterize methods in page objects', async ({ page }) => {
+test('parameterize methods in page objects', {tag: '@smoke'}, async ({ page }) => {
     const pm = new PageManager(page);
     const randomFullName = faker.person.fullName();
     const randomMail = faker.internet.email();
