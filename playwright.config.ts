@@ -9,10 +9,11 @@ require('dotenv').config();
 
 export default defineConfig<TestOptions>({
   timeout: 10000,
-  globalTimeout: 60000,
+  // globalTimeout: 60000,
 
   expect: {
     timeout: 2000,
+    toMatchSnapshot: {maxDiffPixels: 200}
   },
 
 
@@ -23,7 +24,8 @@ export default defineConfig<TestOptions>({
   reporter: [
     ['json', {  outputFile: 'test-results/test-results.json' }],
     ['junit', { outputFile: 'test-results/junit-results.xml' }],
-    ['allure-playwright']
+    //['allure-playwright'],
+    ['html']
   
   ],
 
@@ -86,4 +88,9 @@ export default defineConfig<TestOptions>({
     },
 
   ],
+
+  webServer: {
+    command: 'npm run start',
+    url : 'http://localhost:4200/'
+  }
 });

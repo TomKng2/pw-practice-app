@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { using } from 'rxjs';
 
 test.describe.configure({ mode: 'parallel' });
 
@@ -7,7 +8,7 @@ test.beforeEach(async ({ page }) => {
 });
 
 test.describe('Form Layouts page', {tag: '@block'}, async () => {
-    test.describe.configure({retries: 2});
+    test.describe.configure({retries: 0});
     test.describe.configure({ mode: 'serial' }); //NOT RECOMMENDED
     test.beforeEach(async ({ page }) => {
         await page.getByText('Forms').click();
@@ -34,17 +35,21 @@ test.describe('Form Layouts page', {tag: '@block'}, async () => {
         await expect(useingtheGridEmailInput).toHaveValue('test2@test.com');
     });
 
-    test('radio buttons', async ({ page }) => {
+    test.only('radio buttons', async ({ page }) => {
         const useingtheGridForm = page.locator('nb-card', { hasText: "Using the Grid" });
         //await useingtheGridForm.getByLabel('Option 1').check({force: true});
-        await useingtheGridForm.getByRole('radio', { name: "Option 1" }).check({ force: true });
-        const radioStatus = await useingtheGridForm.getByLabel('Option 1').isChecked();
-        expect(radioStatus).toBeTruthy();
-        await expect(useingtheGridForm.getByRole('radio', { name: "Option 1" })).toBeChecked();
-        
         await useingtheGridForm.getByRole('radio', { name: "Option 2" }).check({ force: true });
-        expect(await useingtheGridForm.getByLabel('Option 1').isChecked()).toBeFalsy();
-        expect(await useingtheGridForm.getByRole('radio', { name: "Option 2" }).isChecked()).toBeTruthy();
+        const radioStatus = await useingtheGridForm.getByLabel('Option 1').isChecked();
+
+        //Visual assertion
+        await expect(useingtheGridForm).toHaveScreenshot();
+
+        // expect(radioStatus).toBeTruthy();
+        // await expect(useingtheGridForm.getByRole('radio', { name: "Option 1" })).toBeChecked();
+        
+        // await useingtheGridForm.getByRole('radio', { name: "Option 2" }).check({ force: true });
+        // expect(await useingtheGridForm.getByLabel('Option 1').isChecked()).toBeFalsy();
+        // expect(await useingtheGridForm.getByRole('radio', { name: "Option 2" }).isChecked()).toBeTruthy();
     })
 
 
